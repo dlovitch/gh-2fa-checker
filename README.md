@@ -1,6 +1,6 @@
 # gh-2fa-checker
 
-This script checks a GitHub organization for all admins that do not have 2FA enabled and then outputs the results to a Slack channel.
+This script checks a GitHub organization for users that do not have 2FA enabled and then outputs the results to a Slack channel.
 
 Configuration parameters can be supplied via a YAML file (and named on the command line with the `--config-file` option) or environment variables.
 
@@ -12,6 +12,10 @@ GITHUB_ORG
 SLACK_API_TOKEN
 SLACK_NOTIFICATION_CHANNEL
 ```
+
+There is one optional variable, `ADMINS_ONLY`, which if set will restrict the search to only admin users.
+
+To get set up:
 
 1. Generate a GitHub token for the `GITHUB_TOKEN` parameter by going here: https://github.com/settings/tokens
   * The only required permission is `read:org`
