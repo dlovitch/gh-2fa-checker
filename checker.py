@@ -24,10 +24,6 @@ class Config(object):
                     self.config = yaml.load(f)
 
     def __getattr__(self, attribute):
-        # NOTE: if neither an environment variable nor a file exists, the
-        # following error will occur: RecursionError: maximum recursion depth
-        # exceeded while calling a Python object
-
         # prioritize environment variables for configuration over the
         # configuration file
         if attribute in os.environ:
@@ -58,7 +54,7 @@ class GitHub2FA:
 ##############################################################################
 
 @click.command()
-@click.option("--config", default=None, help="Config filename")
+@click.option("--config", default=None, help="Path to configuration file", type=click.Path(exists=True))
 @click.option('-v', '--verbose', count=True)
 def main(config, verbose):
     cfg = Config(config)
